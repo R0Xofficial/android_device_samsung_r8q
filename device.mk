@@ -39,3 +39,16 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
 # Screen
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 2400
+
+PRODUCT_PACKAGES += \
+    libfs_mgr_erofs \
+    erofs-utils \
+    fsck.erofs \
+    mkfs.erofs
+
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+
+PRODUCT_PACKAGES += \
+    otapreopt_script
