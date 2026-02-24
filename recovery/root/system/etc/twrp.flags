@@ -41,3 +41,6 @@
 
 # USB-OTG Points
 /usb-otg	        vfat		 /dev/block/sde1	/dev/block/sde			     flags=display="USB-OTG";storage;wipeingui;removable
+
+# EXTERNAL_SD Points
+/external_sd      vfat       /dev/block/mmcblk0p1    /dev/block/mmcblk0   flags=display="MicroSD";storage;wipeingui;removable
