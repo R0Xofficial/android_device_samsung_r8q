@@ -8,11 +8,11 @@
 /recovery           emmc         /dev/block/bootdevice/by-name/recovery          flags=backup=1;flashimg=1;display="Recovery Image"
 
 # Logical Points
-/system         erofs     /dev/block/mapper/system      flags=display="System";logical;first_stage_mount
-/system_ext     erofs     /dev/block/mapper/system_ext  flags=display="System_ext";logical;first_stage_mount
-/vendor         erofs     /dev/block/mapper/vendor      flags=display="Vendor";logical;first_stage_mount
-/product        erofs     /dev/block/mapper/product     flags=display="Product";logical;first_stage_mount
-/odm            erofs     /dev/block/mapper/odm         flags=display="Odm";logical;first_stage_mount
+/system         erofs     system          flags=display="System";logical
+/system_ext     erofs     system_ext      flags=display="System_ext";logical
+/vendor         erofs     vendor          flags=display="Vendor";logical
+/product        erofs     product         flags=display="Product";logical
+/odm            erofs     odm             flags=display="Odm";logical
 
 # Direct image flashing
 /system_image   emmc      /dev/block/bootdevice/by-name/system      flags=backup=1;flashimg=1;display="System Image"
