@@ -145,3 +145,18 @@ TWRP_INCLUDE_LOGCAT := true
 TARGET_USES_LOGD := true
 TW_INCLUDE_LIBRESETPROP := true
 TW_INCLUDE_RESETPROP := true
+
+# EROFS Support
+BOARD_HAS_EROFS := true
+BOARD_RECOVERY_DEVICE_MODULES += libfs_mgr_erofs erofs.ko
+
+# OrangeFox Specifics
+FOX_VERSION := R11.1
+FOX_BUILD_TYPE := Unofficially
+FOX_REPLACE_BUSYBOX_UNTAR := 1
+FOX_USE_TAR_BINARY := 1
+FOX_USE_SED_BINARY := 1
+FOX_USE_XZ_UTILS := 1
+FOX_ASH_IS_BASH := 1
+OF_QUICK_BACKUP_LIST := "boot,data,system_image,vendor_image,product_image"
+BUILD_TARBALL := true
