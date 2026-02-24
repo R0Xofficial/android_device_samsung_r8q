@@ -162,5 +162,5 @@ FOX_USE_TAR_BINARY := 1
 FOX_USE_SED_BINARY := 1
 FOX_USE_XZ_UTILS := 1
 FOX_ASH_IS_BASH := 1
-OF_QUICK_BACKUP_LIST := "boot,data,system_image,vendor_image,product_image"
+OF_QUICK_BACKUP_LIST := boot,data,system_image,vendor_image,product_image,system_ext_image
 BUILD_TARBALL := true
