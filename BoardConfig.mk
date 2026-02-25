@@ -155,6 +155,7 @@ BOARD_HAS_EROFS := true
 BOARD_RECOVERY_DEVICE_MODULES += libfs_mgr_erofs erofs.ko
 
 # OrangeFox Specifics
+FOX_MAINTAINER := R0Xofficial
 FOX_BUILD_TYPE := Unofficially
 FOX_REPLACE_BUSYBOX_UNTAR := 1
 FOX_USE_TAR_BINARY := 1
