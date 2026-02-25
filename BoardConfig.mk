@@ -143,6 +143,7 @@ TW_INCLUDE_LPTOOLS := true
 TW_FRAMERATE := 120
 TW_INCLUDE_REPACKTOOLS := true
 TW_EXCLUDE_APEX := false
+TW_EXCLUDE_DEFAULT_USB_INIT := true
 
 # TWRP Configuration: Logd
 TWRP_INCLUDE_LOGCAT := true
@@ -155,7 +156,6 @@ BOARD_HAS_EROFS := true
 BOARD_RECOVERY_DEVICE_MODULES += libfs_mgr_erofs erofs.ko
 
 # OrangeFox Specifics
-FOX_MAINTAINER := R0Xofficial
 FOX_BUILD_TYPE := Unofficially
 FOX_REPLACE_BUSYBOX_UNTAR := 1
 FOX_USE_TAR_BINARY := 1
@@ -164,3 +164,6 @@ FOX_USE_XZ_UTILS := 1
 FOX_ASH_IS_BASH := 1
 OF_QUICK_BACKUP_LIST := boot,data,system_image,vendor_image,product_image,system_ext_image
 BUILD_TARBALL := true
+OF_ALLOW_DATA_IN_INTERNAL_STORAGE := 1
+OF_SCREEN_BRIGHTNESS := 128
+OF_USE_GREEN_LED := 0
