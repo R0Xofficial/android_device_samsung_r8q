@@ -9,7 +9,6 @@
 
 # Logical Partitions
 /system         erofs     system          flags=display="System";logical
-/system_ext     erofs     system_ext      flags=display="System_ext";logical
 /vendor         erofs     vendor          flags=display="Vendor";logical
 /product        erofs     product         flags=display="Product";logical
 /odm            erofs     odm             flags=display="Odm";logical
