@@ -33,7 +33,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_RUN_POST_FORMAT_PROCESS=1
     export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/bootdevice/by-name/recovery"
     
-    export OF_VANILLA_BUILD=1
+    export FOX_VANILLA_BUILD=1
     export OF_USE_MAGISKBOOT=1
     export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
     export OF_USE_SYSTEM_FINGERPRINT=1
