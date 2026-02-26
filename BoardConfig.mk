@@ -107,7 +107,7 @@ OF_STATUS_H := 88
 OF_STATUS_INDENT_LEFT := 48
 OF_STATUS_INDENT_RIGHT := 48
 OF_FLASHLIGHT_ENABLE := 1
-OF_FL_PATH1 := "/system/flashlight"
+OF_FL_PATH1 := /system/flashlight
 OF_ALLOW_DISABLE_NAVBAR := 0
 OF_QUICK_BACKUP_LIST := boot,data,system_image,vendor_image,product_image
 
