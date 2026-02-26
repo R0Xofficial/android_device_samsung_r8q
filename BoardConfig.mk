@@ -114,3 +114,4 @@ OF_QUICK_BACKUP_LIST := boot,data,system_image,vendor_image,product_image
 # Build Settings
 BUILD_TARBALL := true
 COMMON_GLOBAL_CPPFLAGS += -DRECOVERY_SDCARD_ON_DATA
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
