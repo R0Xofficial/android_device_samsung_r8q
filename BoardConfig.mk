@@ -91,7 +91,7 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 127
 
 # OrangeFox Identity
-OF_MAINTAINER := "R0Xofficial"
+OF_MAINTAINER := R0Xofficial
 FOX_BUILD_TYPE := Unofficial
 
 # OrangeFox Samsung Fixes
