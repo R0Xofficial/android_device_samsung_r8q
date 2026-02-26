@@ -39,7 +39,6 @@
 
 #<src>                                    <mnt_point>    <type>  <mnt_flags and options>    <fs_mgr_flags>
 system                                     /system         erofs    ro                         wait,logical,first_stage_mount
-system_ext                                 /system_ext     erofs    ro                         wait,logical,first_stage_mount
 vendor                                     /vendor         erofs    ro                         wait,logical,first_stage_mount
 product                                    /product        erofs    ro                         wait,logical,first_stage_mount
 odm                                        /odm            erofs    ro                         wait,logical,first_stage_mount
