@@ -1,0 +1,24 @@
+#
+# vendor.prop for r8q
+#
+
+# Crypto & Encryption
+ro.crypto.allow_encrypt_override=true
+ro.crypto.metadata_init_delete_all_keys.enabled=false
+ro.crypto.volume.metadata.method=dm-default-key
+ro.crypto.dm_default_key.options_format.version=2
+ro.crypto.volume.options=::v2
+ro.security.keystore.keytype=sakv2,gak,sgak
+ro.hardware.keystore=mdfpp
+ro.hardware.gatekeeper=mdfpp
+ro.hardware.keystore.desede=true
+
+# USB Configuration
+sys.usb.controller=a600000.dwc3
+vendor.usb.use_ffs_mtp=1
+
+# Display
+ro.sf.lcd_density=407
+
+# Haptics (Vibrations)
+ro.vibrator.state=1
