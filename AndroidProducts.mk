@@ -1,7 +1,8 @@
 #
-# Copyright (C) 2022-2025 The Android Open Source Project
-# Copyright (C) 2022-2025 The TeamWin Recovery Project
-# Copyright (C) 2025 OrangeFox Recovery Project
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
+#
+# SPDX-License-Identifier: Apache-2.0
 #
 
 PRODUCT_MAKEFILES := \
