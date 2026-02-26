@@ -30,7 +30,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 		export LC_ALL="C"
 		
 		# OrangeFox Core Settings
-		export FOX_VANILLA_BUILD=1
+		export OF_VANILLA_BUILD=1
 		export FOX_BUILD_TYPE="Unofficial"
 		export OF_MAINTAINER="R0Xofficial"
         export OF_MAINTAINER_AVATAR="$PWD/device/samsung/r8q/maintainer.png"
