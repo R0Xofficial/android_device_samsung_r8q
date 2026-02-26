@@ -15,9 +15,8 @@
 
 # Direct Image Flashing
 /system_image   emmc      /dev/block/bootdevice/by-name/system      flags=backup=1;flashimg=1;display="System Image"
-/system_ext_image   emmc    /dev/block/bootdevice/by-name/system_ext  flags=backup=1;flashimg=1;display="System_ext Image"
 /vendor_image   emmc      /dev/block/bootdevice/by-name/vendor      flags=backup=1;flashimg=1;display="Vendor Image"
-/product_image    emmc      /dev/block/bootdevice/by-name/product     flags=backup=1;flashimg=1;display="Product Image"
+/product_image  emmc      /dev/block/bootdevice/by-name/product     flags=backup=1;flashimg=1;display="Product Image"
 /odm_image      emmc      /dev/block/bootdevice/by-name/odm         flags=backup=1;flashimg=1;display="ODM Image"
 
 # ETC Moint Point
