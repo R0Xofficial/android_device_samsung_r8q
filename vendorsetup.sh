@@ -49,8 +49,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_CLOCK_POS=1
     export OF_ALLOW_DISABLE_NAVBAR=0
     export OF_USE_GREEN_LED=0
-    export OF_FLASHLIGHT_ENABLE=1
-    export OF_FL_PATH1="/system/flashlight"
 
     # --- Logowanie zmiennych (do debugowania) ---
     if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
