@@ -37,8 +37,6 @@
 /keydata            ext4         /dev/block/bootdevice/by-name/keydata           flags=display="Keydata";wipeingui
 /keyrefuge          ext4         /dev/block/bootdevice/by-name/keyrefuge         flags=display="Keyrefuge";wipeingui
 
-# USB-OTG Points
-/usb-otg      vfat     /dev/block/sde1      /dev/block/sde       flags=display="USB-OTG";storage;wipeingui;removable
-
-# EXTERNAL_SD Points
-/external_sd      vfat       /dev/block/mmcblk1p1    /dev/block/mmcblk1   flags=display="MicroSD";storage;wipeingui;removable
+# Removable storage
+/external_sd	vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0	flags=storage;wipeingui;removable
+/usb-otg	    auto		/dev/block/sdf1	      /dev/block/sdf			flags=display="USB-OTG";storage;wipeingui;removable
