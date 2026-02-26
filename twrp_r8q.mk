@@ -1,30 +1,42 @@
 #
-# Copyright (C) 2022-2025 The Android Open Source Project
-# Copyright (C) 2022-2025 The TeamWin Recovery Project
-# Copyright (C) 2025 OrangeFox Recovery Project
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
+#
+# SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_RELEASE_NAME := r8q
+# Only the below variable(s) need to be changed!
+#
+# Define hardware platform
+PRODUCT_PLATFORM := kona
 
+# The below variables will be generated automatically
+#
+# Release name (automatically taken from this file's suffix)
+PRODUCT_RELEASE_NAME := $(lastword $(subst /, ,$(lastword $(subst _, ,$(firstword $(subst ., ,$(MAKEFILE_LIST)))))))
+
+# Custom vendor used in build tree (automatically taken from this file's prefix)
+CUSTOM_VENDOR := $(lastword $(subst /, ,$(firstword $(subst _, ,$(firstword $(MAKEFILE_LIST))))))
+
+# Inherit from common AOSP config
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit_only.mk)
 
-$(call inherit-product, vendor/twrp/config/common.mk)
+# Inherit from our custom product configuration
+$(call inherit-product, vendor/$(CUSTOM_VENDOR)/config/common.mk)
 
-$(call inherit-product, device/samsung/r8q/device.mk)
+# OEM Info (automatically taken from device tree path)
+BOARD_VENDOR := $(or $(word 2,$(subst /, ,$(firstword $(MAKEFILE_LIST)))),$(value 2))
 
-PRODUCT_PACKAGES += \
-    charger_res_images
+## Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
+PRODUCT_NAME := $(CUSTOM_VENDOR)_$(PRODUCT_DEVICE)
+PRODUCT_BRAND := $(BOARD_VENDOR)
+PRODUCT_MODEL := $(shell echo $(PRODUCT_BRAND) | tr  '[:lower:]' '[:upper:]')_$(PRODUCT_DEVICE)
+PRODUCT_MANUFACTURER := $(PRODUCT_BRAND)
 
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/r8q/recovery/root,recovery/root)
+# Default device path for tree
+DEVICE_PATH := device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)
 
-PRODUCT_NAME := twrp_r8q
-PRODUCT_DEVICE := r8q
-PRODUCT_BRAND := samsung
-PRODUCT_MODEL := SM-G781B
-PRODUCT_MANUFACTURER := samsung
-
-PRODUCT_GMS_CLIENTID_BASE := android-samsung
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.recovery.ui.margin_height=88
+# Inherit from hardware-specific part of the product configuration
+$(call inherit-product, device/$(PRODUCT_BRAND)/$(PRODUCT_DEVICE)/device.mk)
