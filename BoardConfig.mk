@@ -93,7 +93,6 @@ PLATFORM_VERSION := 127
 # OrangeFox Identity
 OF_MAINTAINER := "R0Xofficial"
 FOX_BUILD_TYPE := Unofficial
-FOX_VERSION := R11.3
 
 # OrangeFox Samsung Fixes
 FOX_DYNAMIC_SAMSUNG_FIX := 1
