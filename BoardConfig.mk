@@ -1,9 +1,9 @@
 #
-# Copyright (C) 2022-2025 The TeamWin Recovery Project
-# Copyright (C) 2025 OrangeFox Recovery Project
+# Copyright (C) 2022 The Android Open Source Project
+# Copyright (C) 2022 The TWRP Open Source Project
 #
-
-DEVICE_PATH := device/samsung/r8q
+# SPDX-License-Identifier: Apache-2.0
+#
 
 # Architecture
 TARGET_ARCH := arm64
@@ -17,108 +17,131 @@ TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT := $(TARGET_CPU_VARIANT)
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a75
 
-# Bootloader & Platform
-TARGET_BOOTLOADER_BOARD_NAME := kona
-TARGET_BOARD_PLATFORM := kona
-QCOM_BOARD_PLATFORMS += kona
+# Bootloader
+TARGET_BOOTLOADER_BOARD_NAME := $(PRODUCT_PLATFORM)
 TARGET_NO_BOOTLOADER := true
-TARGET_USES_UEFI := true
 
-# Kernel - Pointing to your Paradigm/Stock mix
-BOARD_KERNEL_IMAGE_NAME := Image.gz
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
-BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_BOOT_HEADER_VERSION := 2
-BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_BASE          := 0x00000000
-BOARD_KERNEL_OFFSET        := 0x00008000
-BOARD_RAMDISK_OFFSET       := 0x02000000
-BOARD_TAGS_OFFSET          := 0x01e00000
-BOARD_DTB_OFFSET           := 0x01f00000
-BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOT_HEADER_VERSION) --pagesize $(BOARD_KERNEL_PAGESIZE)
-BOARD_MKBOOTIMG_ARGS += --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_TAGS_OFFSET) --dtb_offset $(BOARD_DTB_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
+# Platform
+TARGET_BOARD_PLATFORM := $(TARGET_BOOTLOADER_BOARD_NAME)
+QCOM_BOARD_PLATFORMS += $(TARGET_BOARD_PLATFORM)
+
+# Kernel
 BOARD_CUSTOM_BOOTIMG_MK := $(DEVICE_PATH)/mkbootimg.mk
 
-# Android Verified Boot (AVB)
+TARGET_KERNEL_ARCH := $(TARGET_ARCH)
+BOARD_KERNEL_IMAGE_NAME := Image.gz
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/$(BOARD_KERNEL_IMAGE_NAME)
+BOARD_INCLUDE_RECOVERY_DTBO := true
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+
+BOARD_KERNEL_CMDLINE := \
+    console=null \
+    androidboot.hardware=qcom \
+    androidboot.memcg=1 \
+    lpm_levels.sleep_disabled=1 \
+    video=vfb:640x400,bpp=32,memsize=3072000 \
+    msm_rtb.filter=0x237 \
+    service_locator.enable=1 \
+    androidboot.usbcontroller=a600000.dwc3 \
+    swiotlb=2048 \
+    printk.devkmsg=on \
+    firmware_class.path=/vendor/firmware_mnt/image \
+    loop.max_part=7
+
+BOARD_KERNEL_BASE := 0x00000000
+BOARD_KERNEL_PAGESIZE := 4096
+BOARD_MKBOOTIMG_ARGS := \
+    --dtb $(DEVICE_PATH)/prebuilt/dtb \
+    --kernel_offset 0x00008000 \
+    --ramdisk_offset 0x02000000 \
+    --tags_offset 0x01e00000 \
+    --dtb_offset 0x01f00000 \
+    --header_version 2
+BOARD_ROOT_EXTRA_FOLDERS := \
+    carrier \
+    efs \
+    keydata \
+    keyrefuge \
+    metadata \
+    misc \
+    omr \
+    optics \
+    prism \
+    spu
+
+# Android Verified Boot
 BOARD_AVB_ENABLE := true
 BOARD_AVB_RECOVERY_KEY_PATH := external/avb/test/data/testkey_rsa4096.pem
 BOARD_AVB_RECOVERY_ALGORITHM := SHA256_RSA4096
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX := 1
 BOARD_AVB_RECOVERY_ROLLBACK_INDEX_LOCATION := 1
 
+# Properties
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+
 # Partitions
-BOARD_FLASH_BLOCK_SIZE := 262144
+BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
+BOARD_BOOTIMAGE_PARTITION_SIZE := 82694144
+BOARD_DTBOIMG_PARTITION_SIZE := 25165824
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 82694144
-BOARD_HAS_EROFS := true
+
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TARGET_COPY_OUT_VENDOR := vendor
-TARGET_COPY_OUT_PRODUCT := product
-TARGET_COPY_OUT_ODM := odm
-BOARD_SUPPORTS_F2FS := true
 
-# Dynamic Partitions (Physical r8q layout)
+# Dynamic partitions
 BOARD_SUPER_PARTITION_SIZE := 10292822016
 BOARD_SUPER_PARTITION_GROUPS := qti_dynamic_partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE := 10288627712
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system odm product vendor
 
-# Filesystem types for building
-BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
-BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := erofs
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_ODM := odm
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_PRODUCT := product
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_VENDOR := vendor
 
-# Recovery Display & UI (Samsung specific)
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
-TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
-RECOVERY_SDCARD_ON_DATA := true
-TW_THEME := portrait_hdpi
-TW_FRAMERATE := 60
-TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
-TW_MAX_BRIGHTNESS := 486
-TW_DEFAULT_BRIGHTNESS := 200
-TW_SCREEN_BLANK_ON_BOOT := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_DELAY_TOUCH_INIT := true
-TW_INCLUDE_LOGICAL := true
-
-# Encryption & Security
-TW_INCLUDE_CRYPTO := true
+# Encryption
 BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := 2099-12-31
-PLATFORM_VERSION := 127
 
-# OrangeFox Identity
-OF_MAINTAINER := R0Xofficial
-FOX_BUILD_TYPE := Unofficial
+# Recovery
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery.fstab
+RECOVERY_SDCARD_ON_DATA := true
 
-# OrangeFox Samsung Fixes
-FOX_DYNAMIC_SAMSUNG_FIX := 1
-OF_NO_SAMSUNG_SPECIAL := 0
-OF_RUN_POST_FORMAT_PROCESS := 1
-OF_USE_MAGISKBOOT := 1
-OF_USE_MAGISKBOOT_FOR_ALL_PATCHES := 1
+# Use mke2fs to create ext4 images
+TARGET_USES_MKE2FS := true
 
-# OrangeFox UI & Features
-OF_SCREEN_H := 2400
-OF_STATUS_H := 88
-OF_STATUS_INDENT_LEFT := 48
-OF_STATUS_INDENT_RIGHT := 48
-OF_FLASHLIGHT_ENABLE := 1
-OF_FL_PATH1 := /system/flashlight
-OF_ALLOW_DISABLE_NAVBAR := 0
-OF_QUICK_BACKUP_LIST := boot,data,system_image,vendor_image,product_image
+# TWRP specific build flags
+TW_THEME := portrait_hdpi
+TW_SCREEN_BLANK_ON_BOOT := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_MAX_BRIGHTNESS := 486
+TW_DEFAULT_BRIGHTNESS := 128
+TW_CUSTOM_CPU_TEMP_PATH := "/sys/class/thermal/thermal_zone17/temp"
+TW_Y_OFFSET := 89
+TW_H_OFFSET := -89
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_BACKUP_EXCLUSIONS := /data/fonts
+TW_EXTRA_LANGUAGES := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_INCLUDE_CRYPTO := true
+TW_NO_EXFAT_FUSE := true
+TW_INCLUDE_NTFS_3G := true
+TW_INCLUDE_LPDUMP := true
+TW_INCLUDE_LPTOOLS := true
+TW_FRAMERATE := 120
 
-# Build Settings
-BUILD_TARBALL := true
-COMMON_GLOBAL_CPPFLAGS += -DRECOVERY_SDCARD_ON_DATA
-BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+# TWRP Configuration: Logd
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+TW_INCLUDE_LIBRESETPROP := true
+TW_INCLUDE_RESETPROP := true
