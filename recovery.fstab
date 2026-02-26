@@ -1,0 +1,19 @@
+# Android fstab file.
+# <src>                                    <mnt_point>    <type>  <mnt_flags and options>    <fs_mgr_flags>
+
+# Logical Partitions (Dynamic)
+system                                     /system         erofs    ro                         wait,logical,first_stage_mount
+vendor                                     /vendor         erofs    ro                         wait,logical,first_stage_mount
+product                                    /product        erofs    ro                         wait,logical,first_stage_mount
+odm                                        /odm            erofs    ro                         wait,logical,first_stage_mount
+
+# Metadata & Data
+/dev/block/by-name/metadata                /metadata       ext4    noatime,nosuid,nodev,discard,wait,formattable,first_stage_mount
+/dev/block/bootdevice/by-name/userdata     /data           f2fs    noatime,nosuid,nodev,discard,usrquota,grpquota,fsync_mode=nobarrier,reserve_root=32768,resgid=5678,inlinecrypt    latemount,wait,check,fileencryption=aes-256-xts:aes-256-cts:v2+inlinecrypt_optimized,keydirectory=/metadata/vold/metadata_encryption
+
+# Removable Storage
+/dev/block/mmcblk1p1                       /external_sd    vfat    defaults    defaults
+
+# Fixed Partitions
+/dev/block/bootdevice/by-name/misc         /misc           emmc    defaults    defaults
+/dev/block/bootdevice/by-name/cache        /cache          ext4    defaults    wait
