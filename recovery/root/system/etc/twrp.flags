@@ -7,17 +7,21 @@
 /dtbo               emmc         /dev/block/bootdevice/by-name/dtbo              flags=backup=1;flashimg=1;display="DTBO Image"
 /recovery           emmc         /dev/block/bootdevice/by-name/recovery          flags=backup=1;flashimg=1;display="Recovery Image"
 
-# Logical Partitions
-/system         erofs     system          flags=display="System";logical
-/vendor         erofs     vendor          flags=display="Vendor";logical
-/product        erofs     product         flags=display="Product";logical
-/odm            erofs     odm             flags=display="Odm";logical
+# Logical Points
+system              /system      ext4        ro,barrier=1,discard                wait,logical,first_stage_mount
+system              /system      erofs       ro                                  wait,logical,first_stage_mount
+vendor              /vendor      ext4        ro,barrier=1,discard                wait,logical,first_stage_mount
+vendor              /vendor      erofs       ro                                  wait,logical,first_stage_mount
+product             /product     ext4        ro,barrier=1,discard                wait,logical,first_stage_mount
+product             /product     erofs       ro                                  wait,logical,first_stage_mount
+odm                 /odm         ext4        ro,barrier=1,discard                wait,logical,first_stage_mount
+odm                 /odm         erofs       ro                                  wait,logical,first_stage_mount
 
-# Direct Image Flashing
-/system_image   emmc      /dev/block/bootdevice/by-name/system      flags=backup=1;flashimg=1;display="System Image"
-/vendor_image   emmc      /dev/block/bootdevice/by-name/vendor      flags=backup=1;flashimg=1;display="Vendor Image"
-/product_image  emmc      /dev/block/bootdevice/by-name/product     flags=backup=1;flashimg=1;display="Product Image"
-/odm_image      emmc      /dev/block/bootdevice/by-name/odm         flags=backup=1;flashimg=1;display="ODM Image"
+# Direct image flashing
+/system_image       emmc         /dev/block/bootdevice/by-name/system            flags=backup=1;flashimg=1
+/odm_image          emmc         /dev/block/bootdevice/by-name/odm               flags=backup=1;flashimg=1;display="ODM Image"
+/product_image      emmc         /dev/block/bootdevice/by-name/product           flags=backup=1;flashimg=1;display="Product Image"
+/vendor_image       emmc         /dev/block/bootdevice/by-name/vendor            flags=backup=1;flashimg=1
 
 # ETC Moint Point
 /cache              ext4         /dev/block/bootdevice/by-name/cache
@@ -37,6 +41,6 @@
 /keydata            ext4         /dev/block/bootdevice/by-name/keydata           flags=display="Keydata";wipeingui
 /keyrefuge          ext4         /dev/block/bootdevice/by-name/keyrefuge         flags=display="Keyrefuge";wipeingui
 
-# Removable storage
-/external_sd	vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0	flags=storage;wipeingui;removable
-/usb-otg	    auto		/dev/block/sdf1	      /dev/block/sdf			flags=display="USB-OTG";storage;wipeingui;removable
+# SD Card & USB-OTG Points
+/external_sd        auto         /dev/block/mmcblk0p1                            flags=display="Micro SD card";storage;wipeingui;removable
+/usb-otg	        auto         /dev/block/sde1                                 flags=display="USB OTG";storage;wipeingui;removable
