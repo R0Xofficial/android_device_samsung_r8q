@@ -43,4 +43,4 @@ odm                 /odm         erofs       ro                                 
 
 # SD Card & USB-OTG Points
 /external_sd        auto         /dev/block/platform/soc/8804000.sdhci/by-name/sdcard                            flags=display="Micro SD card";storage;wipeingui;removable
-/usb-otg	        auto         /dev/block/sde1                                 flags=display="USB OTG";storage;wipeingui;removable
+/usb-otg	        auto         /dev/block/sde1                                 flags=display="USB OTG";storage;wipeingui;removable;mtp_storage_id=65538
