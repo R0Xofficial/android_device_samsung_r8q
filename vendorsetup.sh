@@ -25,7 +25,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export LC_ALL="C"
     
     export FOX_MAINTAINER="R0Xofficial"
-	export OF_MAINTAINER_AVATAR="$PWD/device/samsung/r8q/maintainer.png"
     export FOX_BUILD_TYPE="Unofficial"
 
     export FOX_DYNAMIC_SAMSUNG_FIX=1
