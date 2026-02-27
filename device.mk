@@ -39,3 +39,7 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
 # Screen
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 2400
+
+PRODUCT_PACKAGES += \
+    mount.exfat \
+    fsck.exfat
