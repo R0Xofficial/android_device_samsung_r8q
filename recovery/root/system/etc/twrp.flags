@@ -42,5 +42,5 @@ odm                 /odm         erofs       ro                                 
 /keyrefuge          ext4         /dev/block/bootdevice/by-name/keyrefuge         flags=display="Keyrefuge";wipeingui
 
 # SD Card & USB-OTG Points
-/external_sd        auto         /dev/block/mmcblk0p1                          flags=display="Micro SD card";storage;wipeingui;removable
+/external_sd        auto         /dev/block/mmcblk1p1                          flags=display="Micro SD card";storage;wipeingui;removable
 /usb-otg	        auto         /dev/block/sde1                                 flags=display="USB OTG";storage;wipeingui;removable
