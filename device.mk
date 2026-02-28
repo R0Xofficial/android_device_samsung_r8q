@@ -43,3 +43,15 @@ TARGET_SCREEN_HEIGHT := 2400
 PRODUCT_PACKAGES += \
     mount.exfat \
     fsck.exfat
+
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0-service \
+    android.hardware.gatekeeper@1.0-service \
+    libkeymaster4 \
+    libkeymaster4_1 \
+    libgatekeeper \
+    libion
