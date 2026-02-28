@@ -50,14 +50,12 @@ on fs
     mount ext4 /dev/block/bootdevice/by-name/persist /persist rw
 
 on post-fs-data
-    # Folder dla usług bezpieczeństwa
     mkdir /data/vendor/keymaster 0775 root system
 
 on boot
     start health-hal-2-1
 
 on property:crypto.ready=1
-    # Start usług Samsunga po przygotowaniu kryptografii
     start keymaster-sb-4-0
     start spdaemon
     start sec_nvm
