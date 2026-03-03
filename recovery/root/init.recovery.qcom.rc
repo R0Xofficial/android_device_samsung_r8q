@@ -28,22 +28,29 @@
 import /init.recovery.qcom_decrypt.rc
 
 on early-init
-    mkdir /mnt/vendor/persist
-    mkdir /mnt/vendor/efs
-    mkdir /mnt/vendor/spunvm
+    mkdir /mnt/vendor/persist 0771 root system
+    mkdir /mnt/vendor/efs 0771 root system
+    mkdir /mnt/vendor/spunvm 0770 root system
+    mkdir /efs 0771 root system
+    mkdir /persist 0771 root system
 
 on fs
-    wait /dev/block/platform/soc/${ro.boot.bootdevice}
-    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    wait /dev/block/platform/soc/1d84000.ufshc
+    
+    symlink /dev/block/platform/soc/1d84000.ufshc /dev/block/bootdevice
+    
+    start ueventd
 
-    # Mount firmware
     mkdir /vendor/firmware_mnt
-    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist rw
+    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro shortname=lower,uid=0,gid=1000,dmask=227,fmask=337
+
     mount ext4 /dev/block/bootdevice/by-name/efs /mnt/vendor/efs rw
-    mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro
+    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist rw
+    mount ext4 /dev/block/bootdevice/by-name/efs /efs rw
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist rw
 
 on post-fs-data
-    mkdir /data/vendor/keymaster
+    mkdir /data/vendor/keymaster 0775 root system
 
 on boot
     start health-hal-2-1
@@ -62,3 +69,5 @@ on property:twrp.user.0.decrypt=0
     umount /vendor/firmware_mnt
     umount /mnt/vendor/efs
     umount /mnt/vendor/persist
+    umount /efs
+    umount /persist

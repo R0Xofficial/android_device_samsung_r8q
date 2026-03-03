@@ -3,7 +3,7 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 
 # Mount point       FS           Device               2nd Device                 Flags
-/boot               emmc         /dev/block/bootdevice/by-name/boot              flags=backup=1;flashimg=1;display="Kernel Image"
+/boot               emmc         /dev/block/bootdevice/by-name/boot              flags=backup=1;flashimg=1;display="BOOT Image"
 /dtbo               emmc         /dev/block/bootdevice/by-name/dtbo              flags=backup=1;flashimg=1;display="DTBO Image"
 /recovery           emmc         /dev/block/bootdevice/by-name/recovery          flags=backup=1;flashimg=1;display="Recovery Image"
 /vbmeta             emmc	       /dev/block/bootdevice/by-name/vbmeta	           flags=backup=1;flashimg=1;display="VBMeta Image"
@@ -19,10 +19,10 @@ odm                 /odm         ext4        ro,barrier=1,discard               
 odm                 /odm         erofs       ro                                  wait,logical
 
 # Direct image flashing
-/system_image       emmc         /dev/block/bootdevice/by-name/system            flags=backup=1;flashimg=1
+/system_image       emmc         /dev/block/bootdevice/by-name/system            flags=backup=1;flashimg=1;display="System Image"
 /odm_image          emmc         /dev/block/bootdevice/by-name/odm               flags=backup=1;flashimg=1;display="ODM Image"
 /product_image      emmc         /dev/block/bootdevice/by-name/product           flags=backup=1;flashimg=1;display="Product Image"
-/vendor_image       emmc         /dev/block/bootdevice/by-name/vendor            flags=backup=1;flashimg=1
+/vendor_image       emmc         /dev/block/bootdevice/by-name/vendor            flags=backup=1;flashimg=1;display="Vendor Image"
 
 # ETC Moint Point
 /cache              ext4         /dev/block/bootdevice/by-name/cache

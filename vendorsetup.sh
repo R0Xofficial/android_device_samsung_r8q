@@ -22,9 +22,12 @@ fi
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export ALLOW_MISSING_DEPENDENCIES=true
     export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+    export OF_DISABLE_MIUI_SPECIFIC_FEATURES="1"
+    export OF_DONT_PATCH_ENCRYPTED_DEVICE="1"
+    export OF_NO_TREBLE_COMPATIBILITY_CHECK="1"
     export LC_ALL="C"
     
-    export FOX_MAINTAINER="R0Xofficial"
+    export OF_MAINTAINER="R0Xofficial"
     export FOX_BUILD_TYPE="Unofficial"
 
     export FOX_DYNAMIC_SAMSUNG_FIX=1
@@ -48,6 +51,12 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_CLOCK_POS=1
     export OF_ALLOW_DISABLE_NAVBAR=0
     export OF_USE_GREEN_LED=0
+
+    export FOX_USE_NANO_EDITOR="1"
+    export FOX_DELETE_AROMAFM="1"
+    export FOX_USE_TAR_BINARY="1"
+    export FOX_USE_SED_BINARY="1"
+    export FOX_USE_XZ_UTILS="1"
 
     # --- Logowanie zmiennych (do debugowania) ---
     if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
