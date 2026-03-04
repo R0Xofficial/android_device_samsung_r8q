@@ -71,3 +71,9 @@ on property:twrp.user.0.decrypt=0
     umount /mnt/vendor/persist
     umount /efs
     umount /persist
+
+on property:sys.boot_completed=1
+    exec u:r:recovery:s0 -- /system/bin/sleep 0.5
+    write /sys/bus/platform/drivers/sdhci_msm/unbind "8804000.sdhci"
+    exec u:r:recovery:s0 -- /system/bin/sleep 1
+    write /sys/bus/platform/drivers/sdhci_msm/bind "8804000.sdhci"
