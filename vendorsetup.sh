@@ -58,6 +58,9 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export FOX_USE_SED_BINARY="1"
     export FOX_USE_XZ_UTILS="1"
 
+	export OF_FLASHLIGHT_ENABLE=1
+	export OF_FL_PATH1="/system/flashlight"
+
     # --- Logowanie zmiennych (do debugowania) ---
     if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
       export | grep "FOX" >> $FOX_BUILD_LOG_FILE
