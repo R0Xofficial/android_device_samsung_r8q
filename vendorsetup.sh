@@ -33,6 +33,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export FOX_DYNAMIC_SAMSUNG_FIX=1
     export OF_NO_SAMSUNG_SPECIAL=0
     export OF_RUN_POST_FORMAT_PROCESS=1
+	export FOX_SETTINGS_ROOT_DIRECTORY="/data/media"
     export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/bootdevice/by-name/recovery"
     
     export FOX_VANILLA_BUILD=1
