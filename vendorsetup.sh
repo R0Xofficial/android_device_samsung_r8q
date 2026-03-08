@@ -30,7 +30,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_MAINTAINER="R0Xofficial"
     export FOX_BUILD_TYPE="Unofficial"
 
-    export FOX_DYNAMIC_SAMSUNG_FIX=1
     export OF_NO_SAMSUNG_SPECIAL=0
     export OF_RUN_POST_FORMAT_PROCESS=1
 	export FOX_SETTINGS_ROOT_DIRECTORY="/data/media"
