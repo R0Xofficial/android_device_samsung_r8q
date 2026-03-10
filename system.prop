@@ -23,6 +23,7 @@ ro.crypto.volume.filenames_mode=aes-256-cts
 # USB Configuration
 persist.sys.usb.config=mtp
 sys.usb.controller=a600000.dwc3
+vendor.usb.use_ffs_mtp=1
 
 # Partition
 ro.boot.dynamic_partitions=true
