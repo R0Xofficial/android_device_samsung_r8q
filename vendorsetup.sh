@@ -42,7 +42,7 @@ if [ "$1" = "$FDEVICE" -o "$PB_BUILD_DEVICE" = "$FDEVICE" ]; then
     export PB_SURVIVAL_FOLDER="/data/media/PB"
     export PB_DISABLE_APP_MANAGER=1
     export PB_DISABLE_DEFAULT_DM_VERITY=true
-    export PB_TORCH_PATH="/sys/class/camera/flash/rear_flash"
+    export PB_TORCH_PATH='"/sys/class/camera/flash/rear_flash"'
     export PB_TORCH_MAX_BRIGHTNESS=1
     
     export PB_USE_NANO_EDITOR=1
