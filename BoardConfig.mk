@@ -151,6 +151,7 @@ TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_LPDUMP := true
 TW_INCLUDE_LPTOOLS := true
 TW_FRAMERATE := 120
+TW_INTERNAL_STORAGE_PATH := "/data/media"
 
 # TWRP Configuration: Logd
 TWRP_INCLUDE_LOGCAT := true
