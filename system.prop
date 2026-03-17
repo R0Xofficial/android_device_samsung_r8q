@@ -37,3 +37,7 @@ ro.vibrator.state=1
 # AVB
 ro.boot.vbmeta.avb_version=1.0
 ro.boot.avb_version=1.0
+
+# FRP
+ro.frp.pst=/dev/block/by-name/persistent 
+
