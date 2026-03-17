@@ -68,24 +68,9 @@ on property:crypto.ready=0
     stop sec_nvm
 
 on property:twrp.user.0.decrypt=0
-    stop keymaster-sb-4-0
-    stop spdaemon
-    stop sec_nvm
-    stop qseecomd
-    stop servicemanager
-    stop hwservicemanager
     umount /vendor/firmware_mnt
-    umount /vendor
-
-on property:twrp.all.users.decrypted=true
-    stop keymaster-sb-4-0
-    stop spdaemon
-    stop sec_nvm
-    stop qseecomd
-    stop servicemanager
-    stop hwservicemanager
-    umount /vendor/firmware_mnt
-    umount /vendor
+    umount /efs
+    umount /persist
 
 service encryptioncheck /system/bin/encryptioncheck.sh
     user root
