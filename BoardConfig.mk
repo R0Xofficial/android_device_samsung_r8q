@@ -73,6 +73,7 @@ BOARD_ROOT_EXTRA_FOLDERS := \
     misc \
     omr \
     optics \
+    persist \
     prism \
     spu
 
