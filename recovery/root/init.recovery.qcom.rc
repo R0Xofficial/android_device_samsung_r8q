@@ -29,8 +29,8 @@ import /init.recovery.qcom_decrypt.rc
 import /init.recovery.modem.rc
 
 on early-init
-    mkdir /mnt/vendor/persist
-    mkdir /mnt/vendor/efs
+    mkdir /persist
+    mkdir /efs
     mkdir /mnt/vendor/spunvm
 
 on fs
@@ -68,9 +68,24 @@ on property:crypto.ready=0
     stop sec_nvm
 
 on property:twrp.user.0.decrypt=0
+    stop keymaster-sb-4-0
+    stop spdaemon
+    stop sec_nvm
+    stop qseecomd
+    stop servicemanager
+    stop hwservicemanager
     umount /vendor/firmware_mnt
-    umount /mnt/vendor/efs
-    umount /mnt/vendor/persist
+    umount /vendor
+
+on property:twrp.all.users.decrypted=true
+    stop keymaster-sb-4-0
+    stop spdaemon
+    stop sec_nvm
+    stop qseecomd
+    stop servicemanager
+    stop hwservicemanager
+    umount /vendor/firmware_mnt
+    umount /vendor
 
 service encryptioncheck /system/bin/encryptioncheck.sh
     user root
