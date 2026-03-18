@@ -41,8 +41,8 @@ on fs
 
     # Mount firmware
     mkdir /vendor/firmware_mnt
-    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist rw
-    mount ext4 /dev/block/bootdevice/by-name/efs /mnt/vendor/efs rw
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist rw
+    mount ext4 /dev/block/bootdevice/by-name/efs /efs rw
     mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro
 
 on post-fs-data
