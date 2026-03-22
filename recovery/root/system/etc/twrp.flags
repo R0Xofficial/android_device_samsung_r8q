@@ -8,16 +8,6 @@
 /recovery           emmc         /dev/block/bootdevice/by-name/recovery          flags=backup=1;flashimg=1;display="Recovery Image"
 /vbmeta             emmc	       /dev/block/bootdevice/by-name/vbmeta	           flags=backup=1;flashimg=1;display="VBMeta Image"
 
-# Logical Points
-system              /system      ext4        ro,barrier=1,discard                wait,logical
-system              /system      erofs       ro                                  wait,logical
-vendor              /vendor      ext4        ro,barrier=1,discard                wait,logical
-vendor              /vendor      erofs       ro                                  wait,logical
-product             /product     ext4        ro,barrier=1,discard                wait,logical
-product             /product     erofs       ro                                  wait,logical
-odm                 /odm         ext4        ro,barrier=1,discard                wait,logical
-odm                 /odm         erofs       ro                                  wait,logical
-
 # Direct image flashing
 /system_image       emmc         /dev/block/bootdevice/by-name/system            flags=backup=1;flashimg=1;display="System Image"
 /odm_image          emmc         /dev/block/bootdevice/by-name/odm               flags=backup=1;flashimg=1;display="ODM Image"
