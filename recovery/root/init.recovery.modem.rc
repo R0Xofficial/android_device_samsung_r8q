@@ -3,12 +3,6 @@ on fs
     mount vfat /dev/block/bootdevice/by-name/modem /vendor/firmware-modem ro
 
 # Services
-service vendor.pd_mapper /vendor/bin/pd-mapper
-    user root
-    group root
-    setenv LD_LIBRARY_PATH /vendor/lib64:/vendor/lib:/system/lib64:/system/lib:/sbin
-    seclabel u:r:recovery:s0
-
 service vendor.per_mgr /vendor/bin/pm-service
     user root
     group root
