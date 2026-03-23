@@ -53,7 +53,8 @@ BOARD_KERNEL_CMDLINE := \
     firmware_class.path=/vendor/firmware_mnt/image \
     loop.max_part=7 \
     msm_ss.restart_level=1 \
-    panic=0
+    panic=0 \
+    loop.max_part=16
 
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
