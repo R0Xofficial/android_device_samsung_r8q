@@ -25,7 +25,13 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+import /init.recovery.qcom_decrypt.rc
 import /init.recovery.modem.rc
+
+on early-init
+    mkdir /persist
+    mkdir /efs
+    mkdir /mnt/vendor/spunvm
 
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
@@ -35,12 +41,40 @@ on fs
 
     # Mount firmware
     mkdir /vendor/firmware_mnt
+    mount ext4 /dev/block/bootdevice/by-name/persist /persist rw
+    mount ext4 /dev/block/bootdevice/by-name/efs /efs rw
     mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro
+
+on post-fs-data
+    mkdir /data/vendor/keymaster
 
 on boot
     stop recovery
     start health-hal-2-1
+    
     start modem_waiter
 
 on property:vendor.modem.stable=1
     start recovery
+
+on property:crypto.ready=1
+    start keymaster-sb-4-0
+    start spdaemon
+    start sec_nvm
+
+on property:crypto.ready=0
+    stop keymaster-sb-4-0
+    stop spdaemon
+    stop sec_nvm
+
+on property:twrp.user.0.decrypt=0
+    umount /vendor/firmware_mnt
+    umount /efs
+    umount /persist
+
+service encryptioncheck /system/bin/encryptioncheck.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
