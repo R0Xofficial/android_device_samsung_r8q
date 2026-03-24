@@ -5,6 +5,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+
 # VNDK
 PRODUCT_TARGET_VNDK_VERSION := 30
 
@@ -19,6 +22,20 @@ PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd
 
+# qcom decryption
+PRODUCT_PACKAGES += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
+
+# Dependencies
+TARGET_RECOVERY_DEVICE_MODULES += \
+    libion \
+    libdmabufheap
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libdmabufheap.so
+
 # Screen
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 2400
@@ -26,3 +43,15 @@ TARGET_SCREEN_HEIGHT := 2400
 PRODUCT_PACKAGES += \
     mount.exfat \
     fsck.exfat
+
+PRODUCT_PACKAGES += \
+    android.hardware.boot@1.0-impl \
+    android.hardware.boot@1.0-service
+
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@4.0-service \
+    android.hardware.gatekeeper@1.0-service \
+    libkeymaster4 \
+    libkeymaster4_1 \
+    libgatekeeper \
+    libion
