@@ -14,6 +14,7 @@
 #
 
 mkdir -p "/tmp/vendor";
+blockdev --setrw "/dev/block/mapper/vendor";
 mount -w "/dev/block/mapper/vendor" "/tmp/vendor";
 
 if [ -f "/tmp/vendor/recovery-from-boot.p" ]; then
@@ -25,5 +26,6 @@ fi;
 
 umount "/tmp/vendor";
 rm -r "/tmp/vendor";
+blockdev --setro "/dev/block/mapper/vendor";
 
 exit 0;
