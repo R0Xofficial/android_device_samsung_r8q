@@ -52,7 +52,7 @@ BOARD_KERNEL_CMDLINE := \
     printk.devkmsg=on \
     firmware_class.path=/vendor/firmware_mnt/image \
     loop.max_part=7 \
-    loop.max_loop=128 \
+    loop.max_loop=64 \
     msm_ss.restart_level=1 \
     panic=0
 
