@@ -51,7 +51,8 @@ BOARD_KERNEL_CMDLINE := \
     swiotlb=2048 \
     printk.devkmsg=on \
     firmware_class.path=/vendor/firmware_mnt/image \
-    loop.max_part=32 \
+    loop.max_part=7 \
+    loop.max_loop=128 \
     msm_ss.restart_level=1 \
     panic=0
 
