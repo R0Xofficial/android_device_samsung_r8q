@@ -129,6 +129,7 @@ TARGET_OTA_ASSERT_DEVICE := r8q
 TARGET_USES_MKE2FS := true
 
 # TWRP specific build flags
+TW_MAINTAINER := R0Xofficial
 TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
@@ -151,6 +152,7 @@ TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_LPDUMP := true
 TW_INCLUDE_LPTOOLS := true
 TW_FRAMERATE := 120
+TW_INTERNAL_STORAGE_PATH := "/data/media"
 
 # TWRP Configuration: Logd
 TWRP_INCLUDE_LOGCAT := true
