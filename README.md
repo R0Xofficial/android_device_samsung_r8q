@@ -1,4 +1,4 @@
-# Unofficial PitchBlack Device Tree for Samsung Galaxy S20 FE 5G
+# Unofficial OrangeFox Device Tree for Samsung Galaxy S20 FE 5G (work in progress)
 
 The Galaxy S20 FE 5G (codenamed _"r8q"_) is an flagship-range smartphone from Samsung.
 
