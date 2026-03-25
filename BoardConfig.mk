@@ -52,7 +52,6 @@ BOARD_KERNEL_CMDLINE := \
     printk.devkmsg=on \
     firmware_class.path=/vendor/firmware_mnt/image \
     loop.max_part=7 \
-    loop.max_loop=64 \
     msm_ss.restart_level=1 \
     panic=0
 
@@ -113,6 +112,7 @@ BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Encryption
+BOARD_USES_QCOM_FBE_DECRYPTION := true
 BOARD_USES_METADATA_PARTITION := true
 PLATFORM_VERSION := 127
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
