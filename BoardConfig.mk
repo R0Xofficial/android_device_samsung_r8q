@@ -153,6 +153,7 @@ TW_INCLUDE_LPDUMP := true
 TW_INCLUDE_LPTOOLS := true
 TW_FRAMERATE := 120
 TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_EXCLUDE_APEX := true
 
 # TWRP Configuration: Logd
 TWRP_INCLUDE_LOGCAT := true
