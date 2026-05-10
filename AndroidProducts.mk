@@ -9,4 +9,4 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/twrp_r8q.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_r8q-eng
+    lunch twrp_r8q-ap2a-eng
