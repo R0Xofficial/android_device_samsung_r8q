@@ -24,7 +24,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
     export OF_DISABLE_MIUI_SPECIFIC_FEATURES=1
     export OF_NO_TREBLE_COMPATIBILITY_CHECK=1
-	  export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
+	export OF_DONT_PATCH_ENCRYPTED_DEVICE=1
     export LC_ALL=C
     
     export OF_MAINTAINER="R0Xofficial"
@@ -32,7 +32,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
     export OF_NO_SAMSUNG_SPECIAL=0
     export OF_RUN_POST_FORMAT_PROCESS=1
-	  export FOX_SETTINGS_ROOT_DIRECTORY="/data/media"
+	export FOX_SETTINGS_ROOT_DIRECTORY="/omr"
     export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/bootdevice/by-name/recovery"
     
     export FOX_VANILLA_BUILD=1
@@ -41,7 +41,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_USE_SYSTEM_FINGERPRINT=1
     export OF_USE_TWRP_SAR_DETECT=1
     export FOX_DISABLE_APP_MANAGER=1
-	  export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
+	export OF_SKIP_MULTIUSER_FOLDERS_BACKUP=1
     
     export OF_SCREEN_H=2400
     export OF_STATUS_H=72
@@ -58,8 +58,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export FOX_USE_SED_BINARY=1
     export FOX_USE_XZ_UTILS=1
 
-	  export OF_FLASHLIGHT_ENABLE=1
-	  export OF_FL_PATH1="/system/flashlight"
+	export OF_FLASHLIGHT_ENABLE=1
+	export OF_FL_PATH1="/system/flashlight"
 
     # --- Logowanie zmiennych (do debugowania) ---
     if [ -n "$FOX_BUILD_LOG_FILE" -a -f "$FOX_BUILD_LOG_FILE" ]; then
