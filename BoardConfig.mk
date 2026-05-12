@@ -49,7 +49,9 @@ BOARD_KERNEL_CMDLINE := \
     swiotlb=2048 \
     printk.devkmsg=on \
     firmware_class.path=/vendor/firmware_mnt/image \
-    loop.max_part=7
+    loop.max_part=7 \
+    msm_ss.restart_level=1 \
+    panic=0
 
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
@@ -117,6 +119,7 @@ RECOVERY_SDCARD_ON_DATA := true
 TARGET_USES_MKE2FS := true
 
 # TWRP specific build flags
+TW_MAINTAINER := R0Xofficial
 TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
@@ -138,6 +141,8 @@ TW_INCLUDE_NTFS_3G := true
 TW_INCLUDE_LPDUMP := true
 TW_INCLUDE_LPTOOLS := true
 TW_FRAMERATE := 120
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_EXCLUDE_APEX := true
 
 # TWRP Configuration: Logd
 TWRP_INCLUDE_LOGCAT := true
