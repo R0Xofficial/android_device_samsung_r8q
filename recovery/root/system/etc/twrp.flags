@@ -6,6 +6,7 @@
 /boot               emmc         /dev/block/bootdevice/by-name/boot
 /dtbo               emmc         /dev/block/bootdevice/by-name/dtbo              flags=backup=1;flashimg=1;display="DTBO"
 /recovery           emmc         /dev/block/bootdevice/by-name/recovery          flags=backup=1
+/persistent         emmc         /dev/block/bootdevice/by-name/persistent        flags=display="FRP";wipeingui
 
 # Direct image flashing
 /system_image       emmc         /dev/block/bootdevice/by-name/system            flags=backup=1;flashimg=1
