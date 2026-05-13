@@ -34,3 +34,10 @@ on property:init.svc.vendor.per_mgr=running
 
 on property:sys.shutdown.requested=*
     stop vendor.per_proxy
+
+service modem_waiter /sbin/sh /sbin/wait_for_modem.sh
+    user root
+    group root
+    oneshot
+    disabled
+    seclabel u:r:recovery:s0
