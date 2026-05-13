@@ -36,4 +36,9 @@ on fs
     mount vfat /dev/block/bootdevice/by-name/apnhlos /vendor/firmware_mnt ro
 
 on boot
+    stop recovery
     start health-hal-2-1
+    start modem_waiter
+
+on property:vendor.modem.stable=1
+    start recovery
