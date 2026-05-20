@@ -1,4 +1,4 @@
-# Unofficial OFRP Device Tree for Samsung Galaxy S20 FE 5G (work in progress)
+# Unofficial OFRP Device Tree for Samsung Galaxy S20 FE 5G
 
 The Galaxy S20 FE 5G (codenamed _"r8q"_) is an flagship-range smartphone from Samsung.
 
